@@ -1,0 +1,43 @@
+{
+  "name": "funprint",
+  "version": "1.0.0",
+  "description": "Drag-drop any picture into your terminal and print it on an 80mm/58mm ESC/POS thermal receipt printer. Cross-platform CLI photo booth.",
+  "type": "module",
+  "bin": {
+    "funprint": "src/cli.mjs"
+  },
+  "scripts": {
+    "start": "node src/cli.mjs"
+  },
+  "keywords": [
+    "thermal-printer",
+    "escpos",
+    "receipt-printer",
+    "cli",
+    "80mm",
+    "58mm",
+    "polaroid",
+    "munbyn",
+    "epson",
+    "dithering"
+  ],
+  "author": "Kevin Gallaccio",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KevinGallaccio/funprint.git"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "src",
+    "scripts",
+    "README.md",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "sharp": "^0.34.5",
+    "terminal-image": "^4.0.0"
+  }
+}
