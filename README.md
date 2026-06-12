@@ -1,6 +1,7 @@
 # FUNPRINT 🖨️
 
-<img width="520" height="856" alt="funprint" src="https://github.com/user-attachments/assets/970ed30f-8192-4161-866b-e5f356723fae" />
+<img width="2216" height="684" alt="funprint_banner" src="https://github.com/user-attachments/assets/ca6184f3-d2f0-4e62-8449-adbb72295b02" />
+
 
 
 A tiny local CLI photo booth for **80mm / 58mm ESC/POS thermal receipt printers**.
