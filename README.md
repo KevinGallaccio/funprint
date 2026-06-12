@@ -1,4 +1,7 @@
-# funprint 🎞️🧾
+# FUNPRINT
+
+<img width="520" height="856" alt="funprint" src="https://github.com/user-attachments/assets/970ed30f-8192-4161-866b-e5f356723fae" />
+
 
 A tiny local CLI photo booth for **80mm / 58mm ESC/POS thermal receipt printers**.
 Drag a picture into your terminal, see a preview of exactly what will print, and hit **P**.
