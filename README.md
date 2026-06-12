@@ -1,4 +1,4 @@
-# FUNPRINT
+# FUNPRINT 🖨️
 
 <img width="520" height="856" alt="funprint" src="https://github.com/user-attachments/assets/970ed30f-8192-4161-866b-e5f356723fae" />
 
