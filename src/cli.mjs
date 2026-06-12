@@ -15,6 +15,7 @@ import { PRINT_WIDTH } from "./config.mjs";
 import { processImage, clamp01 } from "./image.mjs";
 import { buildJob } from "./escpos.mjs";
 import { printBytes, dryRun, waitForJob, isPrinterConnected, resolvePrinter } from "./print.mjs";
+import { printSplash } from "./splash.mjs";
 
 const DRY_RUN = process.argv.includes("--dry-run");
 let jobCounter = 0;
@@ -238,7 +239,12 @@ async function doPrint(state) {
 }
 
 async function main() {
-  await banner();
+  // Fancy receipt-art splash once on load, with the real printer + status baked in.
+  const [printerName, connected] = await Promise.all([
+    resolvePrinter().catch(() => null),
+    isPrinterConnected().catch(() => null),
+  ]);
+  printSplash({ printerName, connected, dots: PAPER_PRESETS[paperIdx].dots });
 
   while (true) {
     const raw = await promptLine(
