@@ -2,9 +2,6 @@
 
 <img width="2216" height="684" alt="funprint_banner" src="https://github.com/user-attachments/assets/ca6184f3-d2f0-4e62-8449-adbb72295b02" />
 
-
-<img alt="funprint printing a photo" src="media/funprint-demo.gif" width="420" />
-
 A tiny local CLI photo booth for **80mm / 58mm ESC/POS thermal receipt printers**.
 Drag a picture into your terminal, see a preview of exactly what will print, and hit **P**.
 
@@ -20,6 +17,8 @@ print queue (MUNBYN, Epson TM clones, Rongta, etc.).
   - **Windows:** `winspool` RAW via a bundled PowerShell helper
 - Previews in the terminal with truecolor half-block ANSI (works in any terminal).
 - Reports honest status: **queued → printed**, or warns if the printer is offline.
+
+<img alt="funprint printing a photo" src="media/funprint-demo.gif" width="420" />
 
 ## Setup
 
