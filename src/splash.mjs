@@ -176,17 +176,39 @@ export function printSplash({ printerName, connected = null, dots = 576 } = {}) 
 }
 
 /**
- * Just the FUN/PRINT wordmark on paper, as an ANSI string — a compact header
- * for the interactive screens (stacked gradient block caps, like the splash).
+ * The "FUN PRINT" wordmark on one line, no background — a compact header for the
+ * interactive screens. Gradient runs pink→amber continuously across both words.
  */
 export function wordmark() {
-  lines.length = 0;
-  paperRow([]); // a little cream breathing room
-  wordRows("FUN");
-  paperRow([]);
-  wordRows("PRINT");
-  paperRow([]);
-  return lines.map(toAnsi).join("\n");
+  const text = "FUN PRINT";
+  const GAP_WITHIN = 1; // spaces between letters
+  const GAP_WORD = 3; // spaces for the space between words
+  const INDENT = 2;
+
+  const rows = ["", "", "", "", ""];
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (ch === " ") {
+      for (let r = 0; r < 5; r++) rows[r] += " ".repeat(GAP_WORD);
+      continue;
+    }
+    const next = text[i + 1];
+    for (let r = 0; r < 5; r++) {
+      rows[r] += FONT[ch][r];
+      if (next && next !== " ") rows[r] += " ".repeat(GAP_WITHIN);
+    }
+  }
+
+  const totalW = rows[0].length;
+  return rows
+    .map((row) => {
+      const segs = [seg(" ".repeat(INDENT))];
+      for (let x = 0; x < row.length; x++) {
+        segs.push(row[x] === "█" ? seg("█", grad(PINK, AMBER, x / (totalW - 1))) : seg(" "));
+      }
+      return toAnsi(segs);
+    })
+    .join("\n");
 }
 
 // Standalone preview: `node src/splash.mjs`
