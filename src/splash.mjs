@@ -175,6 +175,20 @@ export function printSplash({ printerName, connected = null, dots = 576 } = {}) 
   process.stdout.write("\n" + lines.map(toAnsi).join("\n") + "\n\n");
 }
 
+/**
+ * Just the FUN/PRINT wordmark on paper, as an ANSI string — a compact header
+ * for the interactive screens (stacked gradient block caps, like the splash).
+ */
+export function wordmark() {
+  lines.length = 0;
+  paperRow([]); // a little cream breathing room
+  wordRows("FUN");
+  paperRow([]);
+  wordRows("PRINT");
+  paperRow([]);
+  return lines.map(toAnsi).join("\n");
+}
+
 // Standalone preview: `node src/splash.mjs`
 if (import.meta.url === `file://${process.argv[1]}`) {
   printSplash({ printerName: "Printer_POS_80", connected: true, dots: 576 });

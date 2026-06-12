@@ -15,7 +15,7 @@ import { PRINT_WIDTH } from "./config.mjs";
 import { processImage, clamp01 } from "./image.mjs";
 import { buildJob } from "./escpos.mjs";
 import { printBytes, dryRun, waitForJob, isPrinterConnected, resolvePrinter } from "./print.mjs";
-import { printSplash } from "./splash.mjs";
+import { printSplash, wordmark } from "./splash.mjs";
 
 const DRY_RUN = process.argv.includes("--dry-run");
 let jobCounter = 0;
@@ -62,24 +62,15 @@ async function connectionDot() {
 }
 
 async function banner() {
-  // Build the box from the title so the borders always match its width.
-  const name = "funprint";
-  const rest = " · thermal photo booth";
-  const pad = 3;
-  const inner = pad * 2 + name.length + rest.length;
-  const mag = c.magenta + c.bold;
-  const bar = "═".repeat(inner);
-  const sp = " ".repeat(pad);
+  // Compact FUN/PRINT wordmark (a short version of the startup splash) plus the
+  // live printer + connection status line.
   const dot = await connectionDot();
   const printer = (await resolvePrinter().catch(() => null)) || "(no printer found)";
 
   stdout.write(
     "\n" +
-      paint(mag, `  ╔${bar}╗\n`) +
-      paint(mag, `  ║${sp}`) +
-      paint(c.cyan + c.bold, name) +
-      paint(mag, `${rest}${sp}║\n`) +
-      paint(mag, `  ╚${bar}╝\n`) +
+      wordmark() +
+      "\n" +
       paint(c.dim, `  printer: ${printer} `) + dot +
       paint(c.dim, DRY_RUN ? "   [DRY RUN]" : "") + "\n\n",
   );
